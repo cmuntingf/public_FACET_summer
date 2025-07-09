@@ -1,0 +1,29 @@
+The changes I made to the facet-2 lattice file found here https://github.com/slaclab/facet2-lattice/blob/master/MAD/LI20.xsif are documented below and as comments in the new file. 
+
+	- Added semicolons
+	- E20 variable was not defined, set to default = 1 (doesn’t matter since beam is separately defined in xcain)
+	- SBEN → SBEND
+	- The tilt attribute: in mad8 “A skewed quadrupole is defined by entering TILT with no value; this implies a roll of pi/4 rad about the s-axis.”
+		 In madX, “Please note that contrary to MAD-8 one has to specify the desired TILT angle, otherwise it is taken as 0 rad. 
+		 This was needed to avoid the confusion in MAD-8 about the actual meaning of the TILT attribute for various elements.”
+	- QUAD → QUADRUPOLE
+	- APER → APERTURE
+	- SEXT → SEXTUPOLE
+	- DRIF → DRIFT
+	- HKIC → HKICKER
+	- VKIC → VKICKER
+	- MONI → MONITOR
+	- PROF → MONITOR
+	- IMON → MONITOR
+	- BLMO → MONITOR
+	- MARK → MARKER
+	- var-name[L] → var-name->L: 
+		To access variables madX uses element-name->attribute-name. So for
+		D1ET1a   : DRIFT, L=2.821013; To access the length of D1ET1a, we use D1ET1a->L
+	- RCOL → RCOLLIMATOR
+	- LCAV→ RF CAVITY (checked w spencer, ok change)
+
+	- LSQ, the length variable for the SQ1 chicane quadrupole for BC20W is never defined:
+		Doesn’t matter since KSQ1=0, but needs a value for import. 
+		After looking at the database here I found the effective length for SQ1 to be LSQ=0.3813 which I added in on line 202
+
